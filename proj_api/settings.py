@@ -38,6 +38,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['8000-noahdr17-eventhubapi-j1str5336w1.ws.codeinstitute-ide.net', ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-noahdr17-eventhubapi-j1str5336w1.ws.codeinstitute-ide.net/',
+]
 
 # Application definition
 
@@ -50,6 +53,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
+    'rest_framework',
 
     # Apps 
     'profiles',
