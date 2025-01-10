@@ -12,13 +12,13 @@ A web application built with React (front-end) and Django REST Framework (back-e
 
  - Epic 1 API - Set up ( Done ) 
   - User Stories:
-   - 1.1 Project set up
-   - 1.2 Cloudinary
+   - 1.1 Project set up ( Done )
+   - 1.2 Cloudinary ( Done )
 
  - Epic 2 API - Profiles app 
   - User Stories:
-   - 2.1 Create "profiles" app ( In Progress )
-   - 2.2 Create Profile Model
+   - 2.1 Create "profiles" app ( Done )
+   - 2.2 Create Profile Model ( Done)
    - 2.3 Create Profile Serializer
    - 2.4 Create Profile View
 ...
@@ -29,6 +29,8 @@ A web application built with React (front-end) and Django REST Framework (back-e
 
 ## Testing
 ### Manual Tests
+
+
 
 ### Automated Tests
 

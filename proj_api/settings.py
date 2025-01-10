@@ -36,7 +36,7 @@ SECRET_KEY = 'django-insecure-co)74_dq&fi4m_#fj$+uz%c0mgc*inekv!jgtc@b^(+sf2wgj2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['8000-noahdr17-eventhubapi-j1str5336w1.ws.codeinstitute-ide.net', ]
 
 
 # Application definition
