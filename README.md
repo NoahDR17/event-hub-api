@@ -27,8 +27,8 @@ A web application built with React (front-end) and Django REST Framework (back-e
    - 3.1: Create "events" App - Must have ( Done )
    - 3.2: Tag Model - Must have ( Done )
    - 3.3: Event Model - Must have ( Done )
-   - 3.4: Integrate Many-to-Many Tags - Should have ( In Progress )
-   - 3.5: Location & Event Type - Could have
+   - 3.4: Integrate Many-to-Many Tags - Should have ( Done )
+   - 3.5: Location & Event Type - Could have ( Done )
    - 3.6: Basic CRUD and Permissions Integration - Should have
 ...
 

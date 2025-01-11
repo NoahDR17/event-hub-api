@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from django.core.exceptions import ValidationError
+from django.utils import timezone
+
 class Tag(models.Model):
     """
     A simple model for categorizing events.
@@ -64,6 +67,11 @@ class Event(models.Model):
         help_text="Categories or tags associated with this event."
     )
 
+    def clean(self):
+            super().clean()
+            if self.event_date < timezone.now():
+                raise ValidationError("Event date/time cannot be in the past.")
+                
     class Meta:
         ordering = ['-created_at']
 
