@@ -11,3 +11,71 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Event(models.Model):
+    """
+    An Event model that includes:
+    - An owner (user) who creates/hosts the event
+    - Title, description, timestamps
+    - Event date/time
+    - Location and event type
+    - Image hosted via Cloudinary
+    - Many-to-many relation with Tag
+    """
+
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(
+        max_length=200,
+        blank=False,
+    )
+    description = models.TextField(
+        max_length=400,
+        blank=False,
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    image = models.ImageField(
+        upload_to='images/', default='../default_post_ohnagj'
+    )
+    location = models.CharField(
+        max_length=255,
+    )
+    EVENT_TYPE_CHOICES = [
+        ('CONFERENCE', 'Conference'),
+        ('MEETUP', 'Meetup'),
+        ('WORKSHOP', 'Workshop'),
+        ('PARTY', 'Party'),
+        ('OTHER', 'Other'),
+    ]
+    event_type = models.CharField(
+        max_length=50,
+        choices=EVENT_TYPE_CHOICES,
+        default='OTHER'
+    )
+    event_date = models.DateTimeField(
+        help_text="Date and time when the event will take place."
+    )
+    # A many-to-many relationship with Tag
+    tags = models.ManyToManyField(
+        Tag,
+        related_name='events',
+        blank=True,
+        help_text="Categories or tags associated with this event."
+    )
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        """
+        Returns a string with the event's title, date, and tags. 
+        Example output:
+        "Tech Meetup (2025-01-09) [Tech, Workshop]"
+        """
+        # Convert the ManyToMany tags to a list of tag names
+        tags_list = [tag.name for tag in self.tags.all()]
+        # Join them into a comma-separated string
+        tags_str = ', '.join(tags_list)
+
+        return f"{self.title} ({self.event_date.strftime('%Y-%m-%d')}) [{tags_str}]"
