@@ -15,12 +15,21 @@ A web application built with React (front-end) and Django REST Framework (back-e
    - 1.1 Project set up ( Done )
    - 1.2 Cloudinary ( Done )
 
- - Epic 2 API - Profiles app 
+ - Epic 2 API - Profiles app ( Done )
   - User Stories:
    - 2.1 Create "profiles" app ( Done )
    - 2.2 Create Profile Model ( Done )
    - 2.3 Create Profile Serializer ( Done )
-   - 2.4 Create Profile View ( In Progress "Half Complete" )
+   - 2.4 Create Profile View ( Done )
+
+ - Epic 3 API - Events app 
+  - User Stories:
+   - 3.1: Create "events" App - Must have
+   - 3.2: Tag Model - Must have
+   - 3.3: Event Model - Must have
+   - 3.4: Integrate Many-to-Many Tags - Should have
+   - 3.5: Location & Event Type - Could have
+   - 3.6: Basic CRUD and Permissions Integration - Should have
 ...
 
 ## Features (Current State)
