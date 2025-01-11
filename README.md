@@ -29,7 +29,8 @@ A web application built with React (front-end) and Django REST Framework (back-e
    - 3.3: Event Model - Must have ( Done )
    - 3.4: Integrate Many-to-Many Tags - Should have ( Done )
    - 3.5: Location & Event Type - Could have ( Done )
-   - 3.6: Basic CRUD and Permissions Integration - Should have
+   - 3.6: Basic CRUD and Permissions Integration - Should have ( In Progress )
+   - 3.7: Event View and Serializer - Must have ( In Progress )
 ...
 
 ## Features (Current State)
