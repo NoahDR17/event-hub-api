@@ -66,6 +66,56 @@ A web application built with React (front-end) and Django REST Framework (back-e
  - more tests can be carried out once more functionality has been implemented.
  ### Manual Tests
 
+ ## Manual Test: Creating a New Tag During Event Creation ( ToDo )
+
+### Purpose
+Confirm that a user can seamlessly create a brand-new tag while creating an event in the front-end interface.
+
+### Prerequisites
+1. A valid, logged-in user account.  
+2. An existing list of known tags (to verify we’re creating a *new* tag, not reusing an existing one).  
+3. Functional front-end form or page that allows entering event details, including tags.
+
+### Steps
+1. **Log in**  
+   - Open the web application in a browser.  
+   - Log in with a valid user account (e.g., username: `testuser`, password: `password123`).  
+   - Confirm you are successfully redirected to the home/dashboard page.
+
+2. **Navigate to “Create Event” Page**  
+   - Click on the “Create Event” or “New Event” button/link.  
+   - Observe that the event creation form loads properly (title, description, location, date/time, tags, etc.).
+
+3. **Fill Out Basic Event Details**  
+   - Enter an **Event Title** (e.g., “Future Tech Workshop”).  
+   - Enter a brief **Description** (e.g., “Hands-on exploration of new technologies.”).  
+   - Select a **Date/Time** in the future.  
+   - Enter a **Location** (city, venue name, etc.).  
+   - (Optional) Upload an **Image**.
+
+4. **Create a Brand-New Tag**  
+   - In the tags section, type in a **new tag name** that does *not* currently exist in the system (e.g., Dog Friendly or Vegan).  
+   - If the UI allows for multiple tags, add the new tag plus any existing tags as needed.  
+   - Confirm you are either shown a “New Tag Created” indicator or that the front-end acknowledges you have entered a new tag.
+
+5. **Submit the Event**  
+   - Click the **Submit** or **Create Event** button.  
+   - Wait for the success message or confirmation.
+
+6. **Verify the Event Creation**  
+   - After successful submission, you should see the newly created event in your events list or be redirected to the event detail page.  
+   - Confirm the newly added tag is displayed alongside the event details (e.g., “Tags: Dog Friendly).
+
+7. **Check Database or API (Optional Advanced Check)**  
+   - Verify that the **Tag** model contains the new tag:'Dog Friendly' in the database.  
+   - Check the **Event** entry to confirm its `tags` field includes the newly created tag ID.
+
+### Expected Outcome
+- The event is created with all entered fields (title, description, date/time, location, image).  
+- The **newly created tag** is visible on the event detail view.  
+- No errors or warnings appear during submission.  
+- Users can search or filter by the new tag (if the front-end supports that feature).
+
 
 
 
