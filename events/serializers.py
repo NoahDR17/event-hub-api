@@ -16,7 +16,8 @@ class EventSerializer(serializers.ModelSerializer):
     A serializer for the Event model.
     Shows how tags can be listed and updated by their primary keys.
     Automatically sets the owner to the request.user (using perform_create in the view).
-    """
+    """   
+    owner = serializers.ReadOnlyField(source='owner.username')
     tags = serializers.PrimaryKeyRelatedField(
         many=True,
         queryset=Tag.objects.all(),
