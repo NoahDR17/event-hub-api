@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Profile
 from .serializers import ProfileSerializer
-
+from proj_api.permissions import IsOwnerOrReadOnly
 
 class ProfileList(APIView):
     def get(self, request):
@@ -15,6 +15,8 @@ class ProfileList(APIView):
 
 class ProfileDetail(APIView):
     serializer_class = ProfileSerializer
+    permission_classes = [IsOwnerOrReadOnly]
+
     def get_object(self, pk):
         try:
             profile = Profile.objects.get(pk=pk)
@@ -24,6 +26,7 @@ class ProfileDetail(APIView):
 
     def get(self, request, pk):
         profile = self.get_object(pk)
+        self.check_object_permissions(self.request, profile)
         serializer = ProfileSerializer(profile)
         return Response(serializer.data)
         

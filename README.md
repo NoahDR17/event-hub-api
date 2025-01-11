@@ -116,6 +116,38 @@ Confirm that a user can seamlessly create a brand-new tag while creating an even
 - No errors or warnings appear during submission.  
 - Users can search or filter by the new tag (if the front-end supports that feature).
 
+--------------------------------------------
+
+# Manual Test: Ensure Users Cannot Edit Another User's Profile
+
+## Test Objective
+Verify that a logged-in or logged-out user cannot edit another user's profile information.
+---
+
+## Test Steps
+
+1. **Log in as `User A`:**
+   - Navigate to the login form.
+   - Enter `User A`'s credentials (username and password).
+   - Click the **Login** button.
+
+2. **Attempt to Edit `User B`'s Profile:**
+   - Locate `User B`'s profile detail page eg = "/profiles/UserB_Id".
+
+3. **Perform Editing Action:**
+   - If an edit form appears, make changes to `User B`'s profile.
+   - Click **Save** or **Submit** to attempt saving the changes.
+
+---
+
+## Expected Result
+- `User A` is **not** able to access the edit form for `User B`'s profile.
+- If `User A` attempts to submit changes directly (e.g., via URL manipulation):
+- `User B`'s profile remains unchanged.
+
+## Actual Result: When signed in as user A, i opened user B's ProfileDetail Page, and an edit form appeared, after editing the content of the profile, i submitted and the change was made.
+
+## Fix: added permission classes to "profiles/views.py" file, and added logic to validate the object permissions before a get request can be sent.
 
 
 
