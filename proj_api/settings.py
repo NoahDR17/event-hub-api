@@ -66,6 +66,8 @@ INSTALLED_APPS = [
     'profiles',
     'events',
     'comments',
+    'likes',
+
 
 ]
 

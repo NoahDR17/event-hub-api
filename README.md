@@ -35,6 +35,7 @@ A web application built with React (front-end) and Django REST Framework (back-e
  - Epic 4 API - Create Comments, Likes, and Followers/Following Features
   - User Stories: 
    - 4.1: Create Comment Feature - Must Have ( Done ) 
+   - 4.2: Create Like Feature - Must Have ( Done )
 ...
 
 ## Features (Current State)
