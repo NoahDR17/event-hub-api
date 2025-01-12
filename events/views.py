@@ -1,10 +1,9 @@
 from django.db.models import Count
 from rest_framework import generics, permissions, filters
 from django_filters.rest_framework import DjangoFilterBackend
-
+from proj_api.permissions import IsOwnerOrReadOnly
 from .models import Event
 from .serializers import EventSerializer
-from proj_api.permissions import IsOwnerOrReadOnly
 
 class EventList(generics.ListCreateAPIView):
     """
@@ -14,7 +13,10 @@ class EventList(generics.ListCreateAPIView):
     serializer_class = EventSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-    queryset = Event.objects.all().order_by('-created_at')
+    queryset = Event.objects.annotate(
+        comments_count=Count('comment', distinct=True),
+        likes_count=Count('likes', distinct=True)
+    ).order_by('-created_at')
 
     filter_backends = [
         filters.OrderingFilter,
@@ -26,6 +28,9 @@ class EventList(generics.ListCreateAPIView):
         'tags__name',
         'event_type',
         'location',
+        'owner__followed__owner__profile',
+        'likes__owner__profile',
+        'owner__profile',
     ]
     search_fields = [
         'owner__username',
@@ -37,6 +42,11 @@ class EventList(generics.ListCreateAPIView):
     ordering_fields = [
         'created_at',
         'event_date',
+    ]
+    OrderingFilter = [
+        'comments_count',
+        'likes_count',
+        'likes__created_at',
     ]
 
     def perform_create(self, serializer):
@@ -53,4 +63,7 @@ class EventDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = EventSerializer
     permission_classes = [IsOwnerOrReadOnly]
 
-    queryset = Event.objects.all().order_by('-created_at')
+    queryset = Event.objects.annotate(
+        comments_count=Count('comment', distinct=True),
+        likes_count=Count('likes', distinct=True),
+    ).order_by('-created_at')

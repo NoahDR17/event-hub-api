@@ -37,7 +37,7 @@ A web application built with React (front-end) and Django REST Framework (back-e
    - 4.1: Create Comment Feature - Must Have ( Done ) 
    - 4.2: Create Like Feature - Must Have ( Done )
    - 4.3: Create Follow Feature - Must Have ( Done )
-   - 4.4: 4.4: API - Update Events and Profiles to display followers/followed, likes, and comments - Should have ( In Progress )
+   - 4.4: 4.4: API - Update Events and Profiles to display followers/followed, likes, and comments - Should have ( Done )
 ...
 
 ## Features (Current State)
