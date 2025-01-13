@@ -71,6 +71,13 @@ A web application built with React (front-end) and Django REST Framework (back-e
         } " 
  - After making this change, image urls are what they were expected to be.
  - more tests can be carried out once more functionality has been implemented.
+
+ ### Tests During Deployment
+ when deploying to heroku, first deployment failed, saying no python version specified, after adding a runtime file, and specifying an advised python version i redeployed succusfully,
+ but with warnings about using an unsecure python version. 
+
+ fix 1: use a more up to date python version. 
+
  ### Manual Tests
 
  ## Manual Test: Creating a New Tag During Event Creation ( ToDo )
