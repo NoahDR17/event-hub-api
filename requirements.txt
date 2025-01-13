@@ -1,9 +1,16 @@
 asgiref==3.8.1
 cloudinary==1.42.1
+dj-rest-auth==7.0.1
 Django==5.1.4
+django-allauth==65.3.1
 django-cloudinary-storage==0.3.0
 django-filter==24.3
 djangorestframework==3.15.2
+djangorestframework_simplejwt==5.4.0
+oauthlib==3.2.2
 Pillow==8.2.0
+PyJWT==2.10.1
+python3-openid==3.2.0
 pytz==2024.2
+requests-oauthlib==2.0.0
 sqlparse==0.5.3
