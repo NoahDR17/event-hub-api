@@ -19,18 +19,15 @@ class Profile(models.Model):
     image = models.ImageField(
         upload_to='images/', default='../default_profile_wl0tew'
     )
-
     role = models.CharField(
         max_length=20,
         choices=ROLE_CHOICES,
         default='basic'
     )
-    # Musician Specific Fields:
+    # Musician-Specific Fields
     genres = models.TextField(blank=True, null=True)
-    instruments = models.TextField(blank=True, null=True) 
-    # Organiser Specific Fields 
+    instruments = models.TextField(blank=True, null=True)
 
-    # Combined Musician + Organiser past and upcoming events
     @property
     def upcoming_events(self):
         """
@@ -60,30 +57,6 @@ class Profile(models.Model):
             ).order_by('-event_date')
         elif self.role == 'organiser':
             # Events where the user is the organiser
-            return Event.objects.filter(
-                owner=self.owner, event_date__lt=now()
-            ).order_by('-event_date')
-        return Event.objects.none()
-
-    
-
-    @property
-    def upcoming_events(self):
-        """
-        Get upcoming events where this organiser is the owner.
-        """
-        if self.role == 'organiser':
-            return Event.objects.filter(
-                owner=self.owner, event_date__gte=now()
-            ).order_by('event_date')
-        return Event.objects.none()
-
-    @property
-    def past_events(self):
-        """
-        Get past events where this organiser is the owner.
-        """
-        if self.role == 'organiser':
             return Event.objects.filter(
                 owner=self.owner, event_date__lt=now()
             ).order_by('-event_date')
