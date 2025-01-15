@@ -14,7 +14,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         choices=[
             ('basic', 'Basic User'),
             ('organiser', 'Event Organiser'),
-            ('musician', 'Musician/Performer'),
+            ('musician', 'Musician/Band'),
         ],
         default='basic'
     )

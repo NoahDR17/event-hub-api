@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 ROLE_CHOICES = [
     ('basic', 'Basic User'),
     ('organiser', 'Event Organiser'),
-    ('musician', 'Musician/Performer'),
+    ('musician', 'Musician/Band'),
 ]
 
 class Profile(models.Model):
