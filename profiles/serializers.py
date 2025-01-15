@@ -35,6 +35,24 @@ class ProfileSerializer(serializers.ModelSerializer):
             return following.id if following else None
         return None
 
+    def to_representation(self, instance):
+        """
+        Customize representation to include event fields based on role.
+        """
+        representation = super().to_representation(instance)
+        if instance.role == 'basic':
+            # Remove fields not for basic users
+            representation.pop('upcoming_events', None)
+            representation.pop('past_events', None)
+            representation.pop('genres', None)
+            representation.pop('instruments', None)
+            representation.pop('events_count', None)
+        elif instance.role == 'organiser':
+            # Remove fields not for organisers
+            representation.pop('genres', None)
+            representation.pop('instruments', None)
+        return representation
+
     class Meta:
         model = Profile
         fields = [
@@ -56,16 +74,3 @@ class ProfileSerializer(serializers.ModelSerializer):
             'upcoming_events',
             'past_events',
         ]
-
-    def to_representation(self, instance):
-        """
-        Customize representation to include musician-specific fields only for musicians.
-        """
-        representation = super().to_representation(instance)
-        if instance.role != 'musician':
-            # Remove musician-specific fields for non-musicians
-            representation.pop('genres', None)
-            representation.pop('instruments', None)
-            representation.pop('upcoming_events', None)
-            representation.pop('past_events', None)
-        return representation

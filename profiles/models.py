@@ -28,27 +28,67 @@ class Profile(models.Model):
     # Musician Specific Fields:
     genres = models.TextField(blank=True, null=True)
     instruments = models.TextField(blank=True, null=True) 
+    # Organiser Specific Fields 
 
+    # Combined Musician + Organiser past and upcoming events
     @property
     def upcoming_events(self):
         """
-        Get upcoming events where this musician is included.
+        Get upcoming events based on the user's role.
         """
-        return Event.objects.filter(
-            musicians=self.owner , event_date__gte=now()
-        ).order_by('event_date')
+        if self.role == 'musician':
+            # Events where the user is included as a musician
+            return Event.objects.filter(
+                musicians=self.owner, event_date__gte=now()
+            ).order_by('event_date')
+        elif self.role == 'organiser':
+            # Events where the user is the organiser
+            return Event.objects.filter(
+                owner=self.owner, event_date__gte=now()
+            ).order_by('event_date')
+        return Event.objects.none()
 
     @property
     def past_events(self):
         """
-        Get past events where this musician was included.
+        Get past events based on the user's role.
         """
-        return Event.objects.filter(
-            musicians=self.owner , event_date__lt=now()
-        ).order_by('-event_date')
+        if self.role == 'musician':
+            # Events where the user is included as a musician
+            return Event.objects.filter(
+                musicians=self.owner, event_date__lt=now()
+            ).order_by('-event_date')
+        elif self.role == 'organiser':
+            # Events where the user is the organiser
+            return Event.objects.filter(
+                owner=self.owner, event_date__lt=now()
+            ).order_by('-event_date')
+        return Event.objects.none()
+
     
-    # Organiser Specific Fields 
-    
+
+    @property
+    def upcoming_events(self):
+        """
+        Get upcoming events where this organiser is the owner.
+        """
+        if self.role == 'organiser':
+            return Event.objects.filter(
+                owner=self.owner, event_date__gte=now()
+            ).order_by('event_date')
+        return Event.objects.none()
+
+    @property
+    def past_events(self):
+        """
+        Get past events where this organiser is the owner.
+        """
+        if self.role == 'organiser':
+            return Event.objects.filter(
+                owner=self.owner, event_date__lt=now()
+            ).order_by('-event_date')
+        return Event.objects.none()
+
     class Meta:
         ordering = ['-created_at']
 

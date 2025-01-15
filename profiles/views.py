@@ -48,6 +48,21 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
     ).order_by('-created_at')
     serializer_class = ProfileSerializer
 
+    def get_serializer_class(self):
+        """
+        Return a serializer without musician-specific fields for non-musicians.
+        """
+        profile = self.get_object()
+        if profile.role != 'musician':
+            class NonMusicianProfileSerializer(ProfileSerializer):
+                class Meta(ProfileSerializer.Meta):
+                    fields = [
+                        field for field in ProfileSerializer.Meta.fields
+                        if field not in ['genres', 'instruments']
+                    ]
+            return NonMusicianProfileSerializer
+        return ProfileSerializer
+
     def perform_update(self, serializer):
         """
         Override to check if the user's role has changed and handle event deletion.
