@@ -1,6 +1,8 @@
 from django.db import models
+from events.models import Event
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
+from django.utils.timezone import now
 
 ROLE_CHOICES = [
     ('basic', 'Basic User'),
@@ -22,9 +24,31 @@ class Profile(models.Model):
         max_length=20,
         choices=ROLE_CHOICES,
         default='basic'
-        
     )
+    # Musician Specific Fields:
+    genres = models.TextField(blank=True, null=True)
+    instruments = models.TextField(blank=True, null=True) 
 
+    @property
+    def upcoming_events(self):
+        """
+        Get upcoming events where this musician is included.
+        """
+        return Event.objects.filter(
+            musicians=self.owner , event_date__gte=now()
+        ).order_by('event_date')
+
+    @property
+    def past_events(self):
+        """
+        Get past events where this musician was included.
+        """
+        return Event.objects.filter(
+            musicians=self.owner , event_date__lt=now()
+        ).order_by('-event_date')
+    
+    # Organiser Specific Fields 
+    
     class Meta:
         ordering = ['-created_at']
 
