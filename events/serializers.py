@@ -14,10 +14,9 @@ class TagSerializer(serializers.ModelSerializer):
 
 class EventSerializer(serializers.ModelSerializer):
     """
-    A serializer for the Event model.
-    Shows how tags can be listed and updated by their primary keys.
-    Automatically sets the owner to the request.user (using perform_create in the view).
-    """   
+    Handles validation and assignment of the musician field.
+    Automatically sets the owner to the request.user.
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
@@ -35,13 +34,9 @@ class EventSerializer(serializers.ModelSerializer):
         if value.size > 2 * 1024 * 1024:
             raise serializers.ValidationError('Image size larger than 2MB!')
         if value.image.height > 4096:
-            raise serializers.ValidationError(
-                'Image height larger than 4096px!'
-            )
+            raise serializers.ValidationError('Image height larger than 4096px!')
         if value.image.width > 4096:
-            raise serializers.ValidationError(
-                'Image width larger than 4096px!'
-            )
+            raise serializers.ValidationError('Image width larger than 4096px!')
         return value
 
     def get_is_owner(self, obj):
@@ -60,19 +55,22 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = [
-            'id', 'owner', 'title', 'description', 
-            'created_at', 'updated_at', 'image', 'location',
-            'event_type', 'event_date', 'tags', 'is_owner', 
-            'profile_id', 'profile_image', 'title',
-            'like_id', 'likes_count', 'comments_count',
+            'id',
+            'owner',
+            'title',
+            'description',
+            'created_at',
+            'updated_at',
+            'image',
+            'location',
+            'event_type',
+            'event_date',
+            'tags',
+            'is_owner',
+            'profile_id',
+            'profile_image',
+            'like_id',
+            'likes_count',
+            'comments_count',
         ]
         read_only_fields = ['owner', 'created_at', 'updated_at']
-
-    # Validate event_date is not in the past (currently got logic in the models.py to handle it)
-    # def validate_event_date(self, value):
-    #     from django.utils import timezone
-    #     if value < timezone.now():
-    #         raise serializers.ValidationError(
-    #             "Event date/time cannot be in the past."
-    #         )
-    #     return value

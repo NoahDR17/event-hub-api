@@ -37,6 +37,7 @@ class ProfileList(generics.ListAPIView):
 class ProfileDetail(generics.RetrieveUpdateAPIView):
     """
     Retrieve or update a profile if you're the owner.
+    Deletes all events owned by the user if their role changes from 'organiser'.
     """
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Profile.objects.annotate(
@@ -45,3 +46,20 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
         following_count=Count('owner__following', distinct=True)
     ).order_by('-created_at')
     serializer_class = ProfileSerializer
+
+    def perform_update(self, serializer):
+        """
+        Override to check if the user's role has changed and handle event deletion.
+        """
+        user_profile = self.get_object()
+        previous_role = user_profile.role
+        updated_instance = serializer.save()
+        new_role = updated_instance.role
+
+        # Check if the role has changed from 'organiser' to something else
+        if previous_role == 'organiser' and new_role != 'organiser':
+            # Delete all events owned by this user
+            user = user_profile.owner
+            user.event_set.all().delete()
+
+        return updated_instance

@@ -1,14 +1,15 @@
 from django.db.models import Count
 from rest_framework import generics, permissions, filters
+from rest_framework.exceptions import PermissionDenied
 from django_filters.rest_framework import DjangoFilterBackend
 from proj_api.permissions import IsOwnerOrReadOnly
 from .models import Event
 from .serializers import EventSerializer
 
+
 class EventList(generics.ListCreateAPIView):
     """
-    List events or create an event if logged in.
-    The perform_create method associates the event with the logged-in user.
+    List events or create an event if logged in and has the 'organiser' role.
     """
     serializer_class = EventSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -42,8 +43,6 @@ class EventList(generics.ListCreateAPIView):
     ordering_fields = [
         'created_at',
         'event_date',
-    ]
-    OrderingFilter = [
         'comments_count',
         'likes_count',
         'likes__created_at',
@@ -51,8 +50,13 @@ class EventList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         """
-        Automatically set the event owner to the logged-in user.
+        Only allow users with an 'organiser' role in their Profile
+        to create new events. Assign the event owner to the current user.
         """
+        user_profile = self.request.user.profile
+        if user_profile.role != 'organiser':
+            raise PermissionDenied("Only organisers can create new events.")
+        
         serializer.save(owner=self.request.user)
 
 
