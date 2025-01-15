@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from .models import Event, Tag
 from likes.models import Like
+from django.contrib.auth.models import User
+
 
 class TagSerializer(serializers.ModelSerializer):
     """
@@ -11,12 +13,20 @@ class TagSerializer(serializers.ModelSerializer):
         model = Tag
         fields = ['id', 'name']
 
+class MusicianSerializer(serializers.ModelSerializer):
+    """
+    Serializer to display musician details.
+    """
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'profile']
 
 class EventSerializer(serializers.ModelSerializer):
     """
     Handles validation and assignment of the musician field.
     Automatically sets the owner to the request.user.
     """
+    musicians = MusicianSerializer(many=True)
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
@@ -72,5 +82,6 @@ class EventSerializer(serializers.ModelSerializer):
             'like_id',
             'likes_count',
             'comments_count',
+            'musicians',
         ]
         read_only_fields = ['owner', 'created_at', 'updated_at']

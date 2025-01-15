@@ -71,3 +71,21 @@ class EventDetail(generics.RetrieveUpdateDestroyAPIView):
         comments_count=Count('comment', distinct=True),
         likes_count=Count('likes', distinct=True),
     ).order_by('-created_at')
+
+    def get_object(self):
+        """
+        Override to ensure musicians in the event are still valid.
+        """
+        event = super().get_object()
+        invalid_musicians = []
+
+        # Check if any musician no longer has the role 'musician'
+        for musician in event.musicians.all():
+            if musician.profile.role != 'musician':
+                invalid_musicians.append(musician)
+
+        # Remove invalid musicians from the event
+        if invalid_musicians:
+            event.musicians.remove(*invalid_musicians)
+        
+        return event

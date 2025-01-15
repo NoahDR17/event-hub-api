@@ -17,17 +17,8 @@ class Tag(models.Model):
 
 
 class Event(models.Model):
-    """
-    An Event model that includes:
-    - An owner (user) who creates/hosts the event
-    - Title, description, timestamps
-    - Event date/time
-    - Location and event type
-    - Image hosted via Cloudinary
-    - Many-to-many relation with Tag
-    """
-
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    musicians = models.ManyToManyField(User, related_name="musician_events", blank=True)
     title = models.CharField(
         max_length=200,
         blank=False,

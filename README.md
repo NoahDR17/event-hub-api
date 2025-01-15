@@ -70,8 +70,14 @@ By addressing the specific needs of these groups, Event Hub aims to create a vib
 
  - Epic 5 API - Event and Profile Features Improvement
   - User stories:
-   - 5.1: Profile update - Must Have ( In Progress)
-   - 5.2: Create Event Organiser Only Access - Must Have
+   - 5.1: Profile update - Must Have ( Done )
+   - 5.2: Create Event Organiser Only Access - Must Have ( Done )
+   - 5.3: List Musicians playing at event - Could Have ( Done )
+   - 5.4: Musician details ( If doing 5.3: Must Have ) ( Done) 
+
+
+
+
 ...
 
 ## Features (Current State)

@@ -3,6 +3,7 @@ from rest_framework import generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from proj_api.permissions import IsOwnerOrReadOnly
 from .models import Profile
+from events.models import Event
 from .serializers import ProfileSerializer
 
 class ProfileList(generics.ListAPIView):
@@ -61,5 +62,14 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
             # Delete all events owned by this user
             user = user_profile.owner
             user.event_set.all().delete()
+
+
+        # Check if the role changes from 'musician' to something else
+        if previous_role == 'musician' and new_role != 'musician':
+            # Remove this user from all events where they are a musician
+            user = user_profile.owner
+            events = Event.objects.filter(musicians=user)
+            for event in events:
+                event.musicians.remove(user)
 
         return updated_instance
