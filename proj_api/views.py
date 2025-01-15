@@ -11,7 +11,7 @@ JWT_AUTH_SECURE = getattr(settings, 'JWT_AUTH_SECURE', True)
 @api_view()
 def root_route(request):
     return Response({
-        "message": "Welcome to my drf API!"
+        "message": "Welcome to Event Hub API"
     })
 
 

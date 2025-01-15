@@ -1,7 +1,36 @@
 # Event Hub
 
 ## Introduction
-A web application built with React (front-end) and Django REST Framework (back-end) to create, discover, and discuss events.
+A web application built with React (front-end) and Django REST Framework (back-end) to create, discover, and work at music events.
+
+Event Hub is a Full Stack web application designed to serve as a centralized platform for all music event-related activities. The platform offers an engaging space for users to discover upcoming events, catering to a wide range of interests and preferences.
+
+For event organizers, Event Hub provides a valuable opportunity to showcase their events and reach a broader audience. It enables them to gain visibility for their upcoming events, ensuring they attract the right attendees and generate excitement within their target communities.
+
+Additionally, Event Hub supports a unique feature that connects event organizers with talented professionals. Musicians and performers can browse event listings and apply to showcase their talents, creating a seamless collaboration process that benefits both organizers and artists.
+
+## Target Audience for Event Hub
+Event Hub is designed to cater to a diverse range of users, including individuals, event organizers, and professionals in the music industry. The platform's features and services are tailored to meet the needs of the following key audiences:
+
+1. Event Enthusiasts
+
+Individuals looking for events to attend.
+Users who enjoy discovering new experiences, such as concerts, festivals, and live music at bars etc...
+People interested in staying updated on events.
+
+2. Event Organizers
+
+Professionals or businesses hosting events, including festivals, concerts.
+Organizers seeking a platform to promote their events to a broader audience and increase ticket sales or attendance.
+Event planners looking for tools to connect with performers and other event-related talent.
+
+3. Musicians and Performers
+
+Talented individuals and groups, such as musicians, singers, DJs, and other performers, seeking opportunities to showcase their skills.
+Professionals in the entertainment industry who want to collaborate with event organizers and secure gigs.
+Emerging artists aiming to build their portfolios and gain exposure through live performances.
+
+By addressing the specific needs of these groups, Event Hub aims to create a vibrant and inclusive platform that simplifies event discovery, promotion, and collaboration.
 
 ## Technologies
 
@@ -38,6 +67,11 @@ A web application built with React (front-end) and Django REST Framework (back-e
    - 4.2: Create Like Feature - Must Have ( Done )
    - 4.3: Create Follow Feature - Must Have ( Done )
    - 4.4: Update Events and Profiles to display followers/followed, likes, and comments - Should have ( Done )
+
+ - Epic 5 API - Event and Profile Features Improvement
+  - User stories:
+   - 5.1: Profile update - Must Have ( In Progress)
+   - 5.2: Create Event Organiser Only Access - Must Have
 ...
 
 ## Features (Current State)
