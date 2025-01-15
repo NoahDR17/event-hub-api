@@ -2,6 +2,7 @@ from django.db.models import Count
 from rest_framework import generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from proj_api.permissions import IsOwnerOrReadOnly
+from rest_framework.exceptions import PermissionDenied
 from .models import Profile
 from events.models import Event
 from .serializers import ProfileSerializer
@@ -69,8 +70,12 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
         """
         user_profile = self.get_object()
         previous_role = user_profile.role
-        updated_instance = serializer.save()
-        new_role = updated_instance.role
+        new_role = serializer.validated_data.get('role', previous_role)
+
+        # Restrict role changes to basic users only
+        if previous_role != new_role:
+            if previous_role != 'basic':
+                raise PermissionDenied("Only users with the 'basic' role can change their role.")
 
         # Check if the role has changed from 'organiser' to something else
         if previous_role == 'organiser' and new_role != 'organiser':
@@ -87,4 +92,4 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
             for event in events:
                 event.musicians.remove(user)
 
-        return updated_instance
+        serializer.save()
