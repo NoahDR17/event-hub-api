@@ -98,14 +98,12 @@ INSTALLED_APPS = [
     'corsheaders',
 
 
-    # Apps 
+    # Apps
     'profiles',
     'events',
     'comments',
     'likes',
     'followers',
-
-    # 
 
 ]
 
@@ -190,6 +188,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Allauth settings
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

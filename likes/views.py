@@ -1,6 +1,6 @@
 from rest_framework import generics, permissions
 from proj_api.permissions import IsOwnerOrReadOnly
-from .models import Like 
+from .models import Like
 from .serializers import LikeSerializer
 
 

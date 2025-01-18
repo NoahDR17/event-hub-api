@@ -68,7 +68,7 @@ class Event(models.Model):
 
     def __str__(self):
         """
-        Returns a string with the event's title, date, and tags. 
+        Returns a string with the event's title, date, and tags.
         Example output:
         "Tech Meetup (2025-01-09) [Tech, Workshop]"
         """
