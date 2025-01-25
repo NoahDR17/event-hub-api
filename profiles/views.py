@@ -72,24 +72,24 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
         previous_role = user_profile.role
         new_role = serializer.validated_data.get('role', previous_role)
 
-        # Restrict role changes to basic users only
-        if previous_role != new_role:
-            if previous_role != 'basic':
-                raise PermissionDenied("Only users with the 'basic' role can change their role.")
+        # # Restrict role changes to basic users only
+        # if previous_role != new_role:
+        #     if previous_role != 'basic':
+        #         raise PermissionDenied("Only users with the 'basic' role can change their role.")
 
-        # Check if the role has changed from 'organiser' to something else
-        if previous_role == 'organiser' and new_role != 'organiser':
-            # Delete all events owned by this user
-            user = user_profile.owner
-            user.event_set.all().delete()
+        # # Check if the role has changed from 'organiser' to something else
+        # if previous_role == 'organiser' and new_role != 'organiser':
+        #     # Delete all events owned by this user
+        #     user = user_profile.owner
+        #     user.event_set.all().delete()
 
 
-        # Check if the role changes from 'musician' to something else
-        if previous_role == 'musician' and new_role != 'musician':
-            # Remove this user from all events where they are a musician
-            user = user_profile.owner
-            events = Event.objects.filter(musicians=user)
-            for event in events:
-                event.musicians.remove(user)
+        # # Check if the role changes from 'musician' to something else
+        # if previous_role == 'musician' and new_role != 'musician':
+        #     # Remove this user from all events where they are a musician
+        #     user = user_profile.owner
+        #     events = Event.objects.filter(musicians=user)
+        #     for event in events:
+        #         event.musicians.remove(user)
 
         serializer.save()
