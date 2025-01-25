@@ -26,7 +26,7 @@ class EventSerializer(serializers.ModelSerializer):
     Handles validation and assignment of the musician field.
     Automatically sets the owner to the request.user.
     """
-    musicians = MusicianSerializer(many=True)
+    musicians = MusicianSerializer(many=True, required=False)
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')

@@ -18,7 +18,7 @@ class Tag(models.Model):
 
 class Event(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    musicians = models.ManyToManyField(User, related_name="musician_events", blank=True, required=False)
+    musicians = models.ManyToManyField(User, related_name="musician_events", blank=True)
     title = models.CharField(
         max_length=200,
         blank=False,
@@ -55,7 +55,7 @@ class Event(models.Model):
         Tag,
         related_name='events',
         blank=True,
-        required=False
+        help_text="Categories or tags associated with this event."
     )
 
     def clean(self):
