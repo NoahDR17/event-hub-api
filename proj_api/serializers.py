@@ -6,6 +6,9 @@ import sys
 class CurrentUserSerializer(UserDetailsSerializer):
     profile_id = serializers.ReadOnlyField(source='profile.id')
     profile_image = serializers.ReadOnlyField(source='profile.image.url')
+    role = serializers.ReadOnlyField(source='profile.role')
+    genres = serializers.ReadOnlyField(source='profile.genres')
+    instruments = serializers.ReadOnlyField(source='profile.instruments')
 
     class Meta(UserDetailsSerializer.Meta):
         fields = UserDetailsSerializer.Meta.fields + (
