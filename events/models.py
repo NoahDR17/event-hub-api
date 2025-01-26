@@ -36,9 +36,9 @@ class Event(models.Model):
         max_length=255,
     )
     EVENT_TYPE_CHOICES = [
-        ('CONFERENCE', 'Conference'),
-        ('MEETUP', 'Meetup'),
-        ('WORKSHOP', 'Workshop'),
+        ('ORCHESTRA', 'Orchestra'),
+        ('FESTIVAL', 'Festival'),
+        ('GIG', 'Gig'),
         ('PARTY', 'Party'),
         ('OTHER', 'Other'),
     ]
