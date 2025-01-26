@@ -66,9 +66,6 @@ class ProfileSerializer(serializers.ModelSerializer):
         return None
 
     def to_representation(self, instance):
-        """
-        Customize representation to include event fields based on role.
-        """
         representation = super().to_representation(instance)
         if instance.role == 'basic':
             # Remove fields not for basic users

@@ -56,6 +56,11 @@ REST_AUTH = {
     'JWT_AUTH_HTTPONLY': False,
 
 }
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'profiles.serializers.CustomRegisterSerializer',
+}
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
