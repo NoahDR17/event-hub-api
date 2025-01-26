@@ -4,35 +4,6 @@ from .models import Profile
 from followers.models import Follower
 from events.serializers import EventSerializer
 
-class CustomRegisterSerializer(RegisterSerializer):
-    role = serializers.ChoiceField(
-        choices=[
-            ('basic', 'Basic User'),
-            ('organiser', 'Event Organiser'),
-            ('musician', 'Musician/Band'),
-        ],
-        default='basic',
-    )
-
-    def get_cleaned_data(self):
-        """
-        Extend the cleaned_data to include the role field.
-        """
-        cleaned_data = super().get_cleaned_data()
-        cleaned_data['role'] = self.validated_data.get('role', 'basic')
-        return cleaned_data
-
-    def save(self, request):
-        """
-        Override the save method to handle the role field
-        and set it on the Profile during registration.
-        """
-        user = super().save(request)
-        role = self.validated_data.get('role', 'basic')
-
-        Profile.objects.filter(owner=user).update(role=role)
-        return user
-
 class ProfileSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
