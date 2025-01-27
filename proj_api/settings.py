@@ -73,7 +73,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['8000-noahdr17-eventhubapi-j1str5336w1.ws.codeinstitute-ide.net', 'event-hub-backend-a475ed8993ce.herokuapp.com' ]
+ALLOWED_HOSTS = ['8000-noahdr17-eventhubapi-j1str5336w1.ws.codeinstitute-ide.net', os.environ.get('ALLOWED_HOST'), ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-noahdr17-eventhubapi-j1str5336w1.ws.codeinstitute-ide.net',
