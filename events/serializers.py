@@ -3,30 +3,17 @@ from .models import Event, Tag
 from likes.models import Like
 from django.contrib.auth.models import User
 
-
 class TagSerializer(serializers.ModelSerializer):
-    """
-    A serializer for the Tag model.
-    Handles the creation and listing of tags.
-    """
     class Meta:
         model = Tag
         fields = ['id', 'name']
 
-class MusicianSerializer(serializers.ModelSerializer):
-    """
-    Serializer to display musician details.
-    """
-    class Meta:
-        model = User
-        fields = ['id', 'username', 'profile']
-
 class EventSerializer(serializers.ModelSerializer):
-    """
-    Handles validation and assignment of the musician field.
-    Automatically sets the owner to the request.user.
-    """
-    musicians = MusicianSerializer(many=True, required=False)
+    musicians = serializers.PrimaryKeyRelatedField(
+        many=True,
+        queryset=User.objects.filter(profile__role="musician"),
+        required=False
+    )
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
@@ -50,15 +37,13 @@ class EventSerializer(serializers.ModelSerializer):
         return value
 
     def get_is_owner(self, obj):
-        request = self.context['request']
+        request = self.context.get('request')
         return request.user == obj.owner
 
     def get_like_id(self, obj):
         user = self.context['request'].user
         if user.is_authenticated:
-            like = Like.objects.filter(
-                owner=user, event=obj
-            ).first()
+            like = Like.objects.filter(owner=user, event=obj).first()
             return like.id if like else None
         return None
 
