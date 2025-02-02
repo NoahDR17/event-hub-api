@@ -64,17 +64,17 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
                         ]
                 return NonMusicianProfileSerializer
 
-    # For GET requests, use the current profile role to determine which serializer to use.
-    profile = self.get_object()
-    if profile.role != 'musician':
-        class NonMusicianProfileSerializer(ProfileSerializer):
-            class Meta(ProfileSerializer.Meta):
-                fields = [
-                    field for field in ProfileSerializer.Meta.fields
-                    if field not in ['genres', 'instruments']
-                ]
-        return NonMusicianProfileSerializer
-    return ProfileSerializer
+        # For GET requests, use the current profile role to determine which serializer to use.
+        profile = self.get_object()
+        if profile.role != 'musician':
+            class NonMusicianProfileSerializer(ProfileSerializer):
+                class Meta(ProfileSerializer.Meta):
+                    fields = [
+                        field for field in ProfileSerializer.Meta.fields
+                        if field not in ['genres', 'instruments']
+                    ]
+            return NonMusicianProfileSerializer
+        return ProfileSerializer
 
 
     def perform_update(self, serializer):
