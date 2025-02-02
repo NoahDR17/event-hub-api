@@ -41,13 +41,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             # Remove fields not for basic users
             representation.pop('upcoming_events', None)
             representation.pop('past_events', None)
-            representation.pop('genres', None)
-            representation.pop('instruments', None)
             representation.pop('events_count', None)
-        elif instance.role == 'organiser':
-            # Remove fields not for organisers
-            representation.pop('genres', None)
-            representation.pop('instruments', None)
         return representation
 
     class Meta:
