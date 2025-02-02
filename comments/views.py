@@ -1,3 +1,4 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, permissions
 from proj_api.permissions import IsOwnerOrReadOnly
 from .models import Comment
