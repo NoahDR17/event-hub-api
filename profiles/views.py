@@ -2,10 +2,9 @@ from django.db.models import Count
 from rest_framework import generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from proj_api.permissions import IsOwnerOrReadOnly
-from rest_framework.exceptions import PermissionDenied
 from .models import Profile
-from events.models import Event
 from .serializers import ProfileSerializer
+
 
 class ProfileList(generics.ListAPIView):
     queryset = Profile.objects.annotate(
@@ -39,7 +38,8 @@ class ProfileList(generics.ListAPIView):
 class ProfileDetail(generics.RetrieveUpdateAPIView):
     """
     Retrieve or update a profile if you're the owner.
-    Deletes all events owned by the user if their role changes from 'organiser'.
+    Deletes all events owned by the user if their role
+    changes from 'organiser'.
     """
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Profile.objects.annotate(
@@ -64,7 +64,6 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
                         ]
                 return NonMusicianProfileSerializer
 
-        # For GET requests, use the current profile role to determine which serializer to use.
         profile = self.get_object()
         if profile.role != 'musician':
             class NonMusicianProfileSerializer(ProfileSerializer):
@@ -76,12 +75,5 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
             return NonMusicianProfileSerializer
         return ProfileSerializer
 
-
     def perform_update(self, serializer):
-        """
-        Override to check if the user's role has changed and handle event deletion.
-        """
-        user_profile = self.get_object()
-        previous_role = user_profile.role
-        new_role = serializer.validated_data.get('role', previous_role)
         serializer.save()

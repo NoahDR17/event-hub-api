@@ -3,7 +3,9 @@ from rest_framework.response import Response
 from django.conf import settings
 
 JWT_AUTH_COOKIE = settings.REST_AUTH.get('JWT_AUTH_COOKIE', 'my-app-auth')
-JWT_AUTH_REFRESH_COOKIE = settings.REST_AUTH.get('JWT_AUTH_REFRESH_COOKIE', 'my-refresh-token')
+JWT_AUTH_REFRESH_COOKIE = settings.REST_AUTH.get(
+    'JWT_AUTH_REFRESH_COOKIE', 'my-refresh-token'
+    )
 JWT_AUTH_SAMESITE = getattr(settings, 'JWT_AUTH_SAMESITE', 'None')
 JWT_AUTH_SECURE = getattr(settings, 'JWT_AUTH_SECURE', True)
 

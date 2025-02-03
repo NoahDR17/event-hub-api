@@ -18,8 +18,12 @@ if os.path.exists('env.py'):
     import env
 
 STORAGES = {
-            "staticfiles": {"BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"},
-            "default": {"BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage"},
+            "staticfiles":
+            {"BACKEND":
+                "django.contrib.staticfiles.storage.StaticFilesStorage"},
+
+            "default": {"BACKEND":
+                        "cloudinary_storage.storage.MediaCloudinaryStorage"},
         }
 
 CLOUDINARY_STORAGE = {
@@ -38,8 +42,8 @@ REST_FRAMEWORK = {
         'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 5,
     'DATETIME_FORMAT': '%d %b %Y',
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-    
+    'DEFAULT_FILTER_BACKENDS':
+        ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
 if 'DEV' not in os.environ:
@@ -76,7 +80,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['8000-noahdr17-eventhubapi-j1str5336w1.ws.codeinstitute-ide.net', os.environ.get('ALLOWED_HOST'), ]
+ALLOWED_HOSTS = [
+    '8000-noahdr17-eventhubapi-j1str5336w1.ws.codeinstitute-ide.net',
+    os.environ.get('ALLOWED_HOST'), ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-noahdr17-eventhubapi-j1str5336w1.ws.codeinstitute-ide.net',
@@ -115,7 +121,7 @@ INSTALLED_APPS = [
 
 ]
 
-SITE_ID = 1 
+SITE_ID = 1
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',

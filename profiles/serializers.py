@@ -3,6 +3,7 @@ from .models import Profile
 from followers.models import Follower
 from events.serializers import EventSerializer
 
+
 class ProfileSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()

@@ -31,7 +31,7 @@ class CommentSerializer(serializers.ModelSerializer):
             'event', 'created_at', 'updated_at', 'content'
         ]
 
-        
+
 class CommentDetailSerializer(CommentSerializer):
     """
     Serializer for the Comment model used in Detail view

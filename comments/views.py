@@ -14,6 +14,7 @@ class CommentList(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['event']
+
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 

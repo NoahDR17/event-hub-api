@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 
+
 class Tag(models.Model):
     """
     A simple model for categorizing events.
@@ -17,8 +18,10 @@ class Tag(models.Model):
 
 
 class Event(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    musicians = models.ManyToManyField(User, related_name="musician_events", blank=True)
+    owner = models.ForeignKey(
+        User, on_delete=models.CASCADE)
+    musicians = models.ManyToManyField(
+        User, related_name="musician_events", blank=True)
     title = models.CharField(
         max_length=200,
         blank=False,
@@ -59,10 +62,10 @@ class Event(models.Model):
     )
 
     def clean(self):
-            super().clean()
-            if self.event_date < timezone.now():
-                raise ValidationError("Event date/time cannot be in the past.")
-                
+        super().clean()
+        if self.event_date < timezone.now():
+            raise ValidationError("Event date/time cannot be in the past.")
+
     class Meta:
         ordering = ['-created_at']
 
@@ -77,4 +80,5 @@ class Event(models.Model):
         # Join them into a comma-separated string
         tags_str = ', '.join(tags_list)
 
-        return f"{self.title} ({self.event_date.strftime('%Y-%m-%d')}) [{tags_str}]"
+        return
+        f"{self.title}({self.event_date.strftime('%Y-%m-%d')})[{tags_str}]"

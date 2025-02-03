@@ -56,7 +56,7 @@ class EventList(generics.ListCreateAPIView):
         user_profile = self.request.user.profile
         if user_profile.role != 'organiser':
             raise PermissionDenied("Only organisers can create new events.")
-        
+
         serializer.save(owner=self.request.user)
 
 
@@ -87,5 +87,5 @@ class EventDetail(generics.RetrieveUpdateDestroyAPIView):
         # Remove invalid musicians from the event
         if invalid_musicians:
             event.musicians.remove(*invalid_musicians)
-        
+
         return event
