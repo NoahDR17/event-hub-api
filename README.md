@@ -7,17 +7,27 @@ Event Hub API is the backend service used by the [Event Hub Application](https:/
 
 The primary objective of this API is to serve as the backend service for the Event Hub frontend application. It enables seamless **Create, Read, Update, and Delete (CRUD)** operations through the user interface, ensuring efficient management of events, profiles, and interactions within the platform.
 
-## Technologies
-
----
-
 ### Agile
 
 ## Agile Planning
 
-
 This project was developed using **agile methodologies**, delivering small, incremental features across three sprints/iterations over three weeks.
 
+### Out of Scope Features/Tasks
+
+During the development of this project, I cut several features due to time constraints and overall prioritization of core functionalities. These features included:
+
+#### 1. Likes Feature
+- Initially planned to enhance user engagement, the **Likes feature** was deprioritized in favor of completing other critical features.  
+- I decided that the feature, while useful, closely resembled functionality from a previous walkthrough project, diminishing its uniqueness and priority in this specific application.  
+- The focus was shifted towards implementing features that offered more distinctive value to the **Event Hub**, ensuring that the project delivered additional functionality beyond what was covered in tutorials/walkthroughs.  
+
+#### 2. Tags Feature
+- The **Tags feature** aimed to allow users to categorize events with customizable keywords, enhancing discoverability and organization.  
+- However, during development, it became evident to me that the feature was alot more complicated and would require substantially. more time for proper integration with the **Event App** than i had originally planned.
+- Given the time constraints, the decision was made to allocate resources to more impactful features, such as enhancing user profiles and developing the comments and follow functionalities, which were deemed more critical for fostering user interaction and community building within the platform.  
+
+These decisions reflect a strategic approach to feature prioritization, focusing on delivering a functional and engaging **Minimum Viable Product (MVP)** within the allotted timeframe. The cut features remain potential candidates for future iterations of the project, should additional development time become available.
 
 ### Sprint Structure & Prioritization
 
@@ -105,7 +115,8 @@ A **Kanban board** was created using **GitHub Projects**, which can be viewed [h
 -  **5.2:** Create Event Organiser Only Access
 
 -  **5.1:** Profile Update
-
+### DataBase Design 
+![ERD](docs/entity_relationship_diagram/erd.webp)
 ## Security
 
 ### Environment Variables Management
