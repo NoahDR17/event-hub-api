@@ -467,8 +467,37 @@ Each test case follows this structure:
 
 -  **Pass/Fail Status:**✅
 ---
- 
-#### Version Control and Hosting
+### Validator Results:
+- All folders where run through **flake8**, all issues returned where fixed, other than lines too long in migration files, and the Auth Password Validators in settings.py as these are auto generated.
+- Issues returned:
+   - Whitespace
+   - Line to long.
+   - No new line at end of file.
+   - Blank spaces
+   - Over/Under indentation
+   - Expected x blank
+-  A Warning was returned in settings.py for env.py being imported but unused, since the env.py file is being used in development, this issue was ignored.
+
+- **Project Validated**:
+![Project Validated](docs/flake8_assets/proj_api_valid.webp)
+
+- **Profiles Validated**:
+![Profiles Validated](docs/flake8_assets/profiles_valid.webp)
+
+- **Likes Validated**:
+![Likes Validated](docs/flake8_assets/likes_valid.webp)
+
+- **Followers Validated**:
+![Followers Validated](docs/flake8_assets/followers_valid.webp)
+
+- **Events Validated**:
+![Events Validated](docs/flake8_assets/events_valid.webp)
+
+- **Comments Validated**:
+![Comments Validated](docs/flake8_assets/comments_valid.webp)
+
+-Here is an Example of what I was returned after running the flake8 test on a folder:
+![Event Not Validated](docs/flake8_assets/events_not_valid.webp)
 
 -  **Git**: Used to track code changes, commit, and push code during development.
 
