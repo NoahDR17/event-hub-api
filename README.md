@@ -1,214 +1,631 @@
+
 # Event Hub
 
-## Introduction
-A web application built with React (front-end) and Django REST Framework (back-end) to create, discover, and work at music events.
+Event Hub API is the backend service used by the [Event Hub Application](https://github.com/NoahDR17/event-hub-frontend).
 
-Event Hub is a Full Stack web application designed to serve as a centralized platform for all music event-related activities. The platform offers an engaging space for users to discover upcoming events, catering to a wide range of interests and preferences.
+## Development Goals
 
-For event organizers, Event Hub provides a valuable opportunity to showcase their events and reach a broader audience. It enables them to gain visibility for their upcoming events, ensuring they attract the right attendees and generate excitement within their target communities.
-
-Additionally, Event Hub supports a unique feature that connects event organizers with talented professionals. Musicians and performers can browse event listings and apply to showcase their talents, creating a seamless collaboration process that benefits both organizers and artists.
-
-## Target Audience for Event Hub
-Event Hub is designed to cater to a diverse range of users, including individuals, event organizers, and professionals in the music industry. The platform's features and services are tailored to meet the needs of the following key audiences:
-
-1. Event Enthusiasts
-
-Individuals looking for events to attend.
-Users who enjoy discovering new experiences, such as concerts, festivals, and live music at bars etc...
-People interested in staying updated on events.
-
-2. Event Organizers
-
-Professionals or businesses hosting events, including festivals, concerts.
-Organizers seeking a platform to promote their events to a broader audience and increase ticket sales or attendance.
-Event planners looking for tools to connect with performers and other event-related talent.
-
-3. Musicians and Performers
-
-Talented individuals and groups, such as musicians, singers, DJs, and other performers, seeking opportunities to showcase their skills.
-Professionals in the entertainment industry who want to collaborate with event organizers and secure gigs.
-Emerging artists aiming to build their portfolios and gain exposure through live performances.
-
-By addressing the specific needs of these groups, Event Hub aims to create a vibrant and inclusive platform that simplifies event discovery, promotion, and collaboration.
+The primary objective of this API is to serve as the backend service for the Event Hub frontend application. It enables seamless **Create, Read, Update, and Delete (CRUD)** operations through the user interface, ensuring efficient management of events, profiles, and interactions within the platform.
 
 ## Technologies
 
 ---
 
-## Agile 
-### Epics 
+### Agile
 
- - Epic 1 API - Set up ( Done ) 
-  - User Stories:
-   - 1.1 Project set up ( Done )
-   - 1.2 Cloudinary ( Done )
-
- - Epic 2 API - Profiles app ( Done )
-  - User Stories:
-   - 2.1 Create "profiles" app ( Done )
-   - 2.2 Create Profile Model ( Done )
-   - 2.3 Create Profile Serializer ( Done )
-   - 2.4 Create Profile View ( Done )
-
- - Epic 3 API - Events app 
-  - User Stories:
-   - 3.1: Create "events" App - Must have ( Done )
-   - 3.2: Tag Model - Must have ( Done )
-   - 3.3: Event Model - Must have ( Done )
-   - 3.4: Integrate Many-to-Many Tags - Should have ( Done )
-   - 3.5: Location & Event Type - Could have ( Done )
-   - 3.6: Basic CRUD and Permissions Integration - Should have ( Done )
-   - 3.7: Event View and Serializer - Must have ( Done )
-
- - Epic 4 API - Create Comments, Likes, and Followers/Following Features
-  - User Stories: 
-   - 4.1: Create Comment Feature - Must Have ( Done ) 
-   - 4.2: Create Like Feature - Must Have ( Done )
-   - 4.3: Create Follow Feature - Must Have ( Done )
-   - 4.4: Update Events and Profiles to display followers/followed, likes, and comments - Should have ( Done )
-
- - Epic 5 API - Event and Profile Features Improvement
-  - User stories:
-   - 5.1: Profile update - Must Have ( Done )
-   - 5.2: Create Event Organiser Only Access - Must Have ( Done )
-   - 5.3: List Musicians playing at event - Could Have ( Done )
-   - 5.4: Musician details ( If doing 5.3: Must Have ) ( Done) 
+## Agile Planning
 
 
+This project was developed using **agile methodologies**, delivering small, incremental features across three sprints/iterations over three weeks.
 
 
-...
+### Sprint Structure & Prioritization
 
-## Features (Current State)
+All user stories were grouped into **epics**:
+
+-  **Must have** – Core features, completed first to ensure a functional MVP.
+
+-  **Should have** – Important but non-essential features, completed after the core.
+
+-  **Could have** – Nice-to-have features, implemented if time allowed.
+
+This prioritization ensured that all critical requirements were met first, providing a complete and usable product while allowing for additional improvements if capacity permitted.
+
+
+### Kanban Board & Project Tracking
+
+A **Kanban board** was created using **GitHub Projects**, which can be viewed [here](https://github.com/users/NoahDR17/projects/10/views/1).
+
+### Epics
+
+## Epic 1: API - Set Up
+
+## Epic 2: API - Profiles App
+
+## Epic 3: API - Event App
+
+## Epic 4: API - Create Comments, Likes, and Followers/Following Features
+
+## Epic 5: API - Event and Profile Feature Improvement
+
+### User Stories and Their Epics
+
+## Epic 1: API - Set Up
+
+-  **1.1** Project Set Up
+
+-  **1.2** Cloudinary
+
+## Epic 2: API - Profiles App
+
+-  **2.4:** Create Profile View
+
+-  **2.3:** Create Profile Serializer
+
+-  **2.2:** Create Profile Model
+
+-  **2.1:** Create "Profiles" App
+- 
+## Epic 3: API - Event App
+
+-  **3.7:** Event View and Serializer
+
+-  **3.6:** Basic CRUD and Permissions Integration
+
+-  **3.5:** Location & Event Type
+
+-  **3.4:** Integrate Many-to-Many Tags
+
+-  **3.3:** Event Model
+
+-  **3.2:** Tag Model
+
+-  **3.1:** Create "Events" App
+
+## Epic 4: API - Create Comments, Likes, and Followers/Following Features
+
+-  **4.4:** API - Update Events and Profiles to Display Followers/Followed, Likes, and Comments
+
+-  **4.3:** Create Follow Feature
+
+-  **4.2:** API - Likes Feature
+
+-  **4.1:** Comments Feature
+
+## Epic 5: API - Event and Profile Feature Improvement
+
+-  **5.5:** Upgrade Basic Account Feature
+
+-  **5.5:** Add More Musician Specific Fields to Profile Model
+
+-  **5.4:** Musician Details
+
+-  **5.3:** List Musicians Playing at Event
+
+-  **5.2:** Create Event Organiser Only Access
+
+-  **5.1:** Profile Update
+
+## Security
+
+### Environment Variables Management
+
+Environment variables were managed securely to prevent sensitive information from being exposed in the codebase:
+
+-  **Local Development**: Environment variables (such as secret keys, and database credentials) were stored in an `env.py` file. This file was kept out of version control to ensure that sensitive data was not added to the repository.
+
+-  **Production**: For the production environment, these variables were securely added to the Heroku Config Vars. This setup allows the application to access necessary configurations without exposing sensitive information.
+
+-  **CORS Configuration** – Restricts API access to trusted origins.
+
+### Permissions & Access Control
+
+The API implements a **permissions class** to ensure secure access control based on user roles and authentication. This class enforces different levels of access depending on the user's authentication status and role within the system.
+
+  
+### Authentication & Authorization
+
+To protect sensitive endpoints, the API uses:
+
+-  **JWT Authentication** – Secure token-based authentication for user sessions.
+
+-  **Role-Based Access Control (RBAC)** – Restricts actions based on user roles.
+
+-  **Custom Permissions** – Control over who can create, read, update, or delete specific resources.
+
+## Technologies
+
+* Django
+
+* Main framework used for application creation
+
+* Django REST Framework
+
+* Framework used for creating API
+
+* Cloudinary
+
+* Used for image hosting
+
+* Heroku
+
+* Used for hosting the application
+
+* Git
+
+* Used for version control
+
+* Github
+
+* Repository for storing code and docs
 
 ---
 
+## Packages and Dependencies
+
+
+The following dependencies are used for this project:
+ 
+### Core Frameworks & Libraries
+
+-  **Django** – `Django==5.1.4` (High-level web framework for rapid development)
+
+-  **Django REST Framework (DRF)** – `djangorestframework==3.15.2` (API framework for building RESTful services)
+
+### Authentication & Security
+
+-  **dj-rest-auth** – `dj-rest-auth==7.0.1` (Authentication and authorization package)
+
+-  **django-allauth** – `django-allauth==65.3.1` (User authentication, registration, and social authentication)
+
+-  **django-rest-auth** – `django-rest-auth==0.9.5` (Older auth package for DRF)
+
+-  **djangorestframework_simplejwt** – `djangorestframework_simplejwt==5.4.0` (JWT authentication)
+
+-  **oauthlib** – `oauthlib==3.2.2` (OAuth authentication support)
+
+-  **PyJWT** – `PyJWT==2.10.1` (JSON Web Token implementation)
+
+-  **requests-oauthlib** – `requests-oauthlib==2.0.0` (OAuth 1 & 2 authentication for API requests)
+
+-  **python3-openid** – `python3-openid==3.2.0` (OpenID authentication)
+
+
+### Database & Storage
+
+-  **dj-database-url** – `dj-database-url==0.5.0` (Database URL configuration)
+
+-  **psycopg2** – `psycopg2==2.9.10` (PostgreSQL database adapter)
+
+-  **sqlparse** – `sqlparse==0.5.3` (SQL parsing library for Django)
+
+
+### Media & File Storage
+
+-  **Cloudinary** – `cloudinary==1.42.1` (Cloud-based image and video storage)
+
+-  **django-cloudinary-storage** – `django-cloudinary-storage==0.3.0` (Cloudinary integration for Django)
+
+-  **Pillow** – `Pillow==8.2.0` (Image processing library)
+
+### Middleware & Performance
+
+-  **django-cors-headers** – `django-cors-headers==4.6.0` (CORS middleware for handling cross-origin requests)
+
+-  **django-filter** – `django-filter==24.3` (Filtering support for Django REST Framework)
+
+-  **asgiref** – `asgiref==3.8.1` (ASGI compatibility layer for Django)
+
+-  **gunicorn** – `gunicorn==23.0.0` (WSGI HTTP server for production)
+
+-  **pytz** – `pytz==2024.2` (Timezone support for Django)
+
+These dependencies are managed via `pip` and can be installed using:
+
+```bash
+
+pip install  -r  requirements.txt
+
+```
+
 ## Testing
-### Tests During Development 
-- Test Case 1 (Carried out during the initial stages of backend development/profile-setup): 
- - Verify Default Cloudinay Image.
-  - Ensure that when no custom image is uploaded on profile creation, the application correctly assigns and displays a default image hosted on Cloudinary.
 
- - Steps:
-  - Create Superuser, if one is already created then that one will work fine.
-  - In the devepment server, navigate to "profile/" or "profile/{id}".
-  - Check the image url of a profile.
-  - Ensure url is "https://res.cloudinary.com/<cloud-name>/image/upload/v1/media/../name-of-image"
+### Tests During Development
 
-- Expected Outcome: 
- - The url is "https://res.cloudinary.com/<cloud-name>/image/upload/v1/media/../name-of-image"
+- Test Case 1 (Carried out during the initial stages of backend development/profile-setup):
 
-- Actual Outcome: 
- - The url is "/name-of-image" 
+- Verify Default Cloudinay Image.
+
+- Ensure that when no custom image is uploaded on profile creation, the application correctly assigns and displays a default image hosted on Cloudinary.
+
+- Steps:
+
+- Create Superuser, if one is already created then that one will work fine.
+
+- In the devepment server, navigate to "profile/" or "profile/{id}".
+
+- Check the image url of a profile.
+
+- Ensure url is "https://res.cloudinary.com/<cloud-name>/image/upload/v1/media/../name-of-image"
+
+- Expected Outcome:
+
+- The url is "https://res.cloudinary.com/<cloud-name>/image/upload/v1/media/../name-of-image"
+
+- Actual Outcome:
+
+- The url is "/name-of-image"
 
 - Fix:
- - From what i gathered while troubleshooting the old method of declaring the default media file storage has been depracated.
-  - it is no longer " DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage' ", and instead is
-    " STORAGES = {
-            "staticfiles": {"BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"},
-            "default": {"BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage"},
-        } " 
- - After making this change, image urls are what they were expected to be.
- - more tests can be carried out once more functionality has been implemented.
 
- ### Tests During Deployment
- when deploying to heroku, first deployment failed, saying no python version specified, after adding a runtime file, and specifying an advised python version i redeployed succusfully,
- but with warnings about using an unsecure python version. 
+- From what i gathered while troubleshooting the old method of declaring the default media file storage has been depracated.
 
- fix 1: use a more up to date python version. 
+- it is no longer " DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage' ", and instead is
 
- ### Manual Tests
+" STORAGES = {
 
- ## Manual Test: Creating a New Tag During Event Creation ( ToDo )
+"staticfiles": {"BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"},
 
-### Purpose
-Confirm that a user can seamlessly create a brand-new tag while creating an event in the front-end interface.
+"default": {"BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage"},
 
-### Prerequisites
-1. A valid, logged-in user account.  
-2. An existing list of known tags (to verify we’re creating a *new* tag, not reusing an existing one).  
-3. Functional front-end form or page that allows entering event details, including tags.
+} "
 
-### Steps
-1. **Log in**  
-   - Open the web application in a browser.  
-   - Log in with a valid user account (e.g., username: `testuser`, password: `password123`).  
-   - Confirm you are successfully redirected to the home/dashboard page.
+- After making this change, image urls are what they were expected to be.
 
-2. **Navigate to “Create Event” Page**  
-   - Click on the “Create Event” or “New Event” button/link.  
-   - Observe that the event creation form loads properly (title, description, location, date/time, tags, etc.).
+- more tests can be carried out once more functionality has been implemented.  
 
-3. **Fill Out Basic Event Details**  
-   - Enter an **Event Title** (e.g., “Future Tech Workshop”).  
-   - Enter a brief **Description** (e.g., “Hands-on exploration of new technologies.”).  
-   - Select a **Date/Time** in the future.  
-   - Enter a **Location** (city, venue name, etc.).  
-   - (Optional) Upload an **Image**.
+### Tests During Deployment
 
-4. **Create a Brand-New Tag**  
-   - In the tags section, type in a **new tag name** that does *not* currently exist in the system (e.g., Dog Friendly or Vegan).  
-   - If the UI allows for multiple tags, add the new tag plus any existing tags as needed.  
-   - Confirm you are either shown a “New Tag Created” indicator or that the front-end acknowledges you have entered a new tag.
+when deploying to heroku, first deployment failed, saying no python version specified, after adding a runtime file, and specifying an advised python version i redeployed succusfully,
 
-5. **Submit the Event**  
-   - Click the **Submit** or **Create Event** button.  
-   - Wait for the success message or confirmation.
+but with warnings about using an unsecure python version.
 
-6. **Verify the Event Creation**  
-   - After successful submission, you should see the newly created event in your events list or be redirected to the event detail page.  
-   - Confirm the newly added tag is displayed alongside the event details (e.g., “Tags: Dog Friendly).
+fix 1: use a more up to date python version.
 
-7. **Check Database or API (Optional Advanced Check)**  
-   - Verify that the **Tag** model contains the new tag:'Dog Friendly' in the database.  
-   - Check the **Event** entry to confirm its `tags` field includes the newly created tag ID.
+## Manual Tests
+### Manual Test: Ensure Users Cannot Edit Another User's Profile
+#### Test Objective
 
-### Expected Outcome
-- The event is created with all entered fields (title, description, date/time, location, image).  
-- The **newly created tag** is visible on the event detail view.  
-- No errors or warnings appear during submission.  
-- Users can search or filter by the new tag (if the front-end supports that feature).
-
---------------------------------------------
-
-# Manual Test: Ensure Users Cannot Edit Another User's Profile
-
-## Test Objective
 Verify that a logged-in or logged-out user cannot edit another user's profile information.
 ---
 
 ## Test Steps
 
-1. **Log in as `User A`:**
-   - Navigate to the login form.
-   - Enter `User A`'s credentials (username and password).
-   - Click the **Login** button.
+1.  **Log in as `User A`:**
 
-2. **Attempt to Edit `User B`'s Profile:**
-   - Locate `User B`'s profile detail page eg = "/profiles/UserB_Id".
+- Navigate to the login form.
 
-3. **Perform Editing Action:**
-   - If an edit form appears, make changes to `User B`'s profile.
-   - Click **Save** or **Submit** to attempt saving the changes.
+- Enter `User A`'s credentials (username and password).
+
+- Click the **Login** button.
+
+
+2.  **Attempt to Edit `User B`'s Profile:**
+
+- Locate `User B`'s profile detail page eg = "/profiles/UserB_Id".  
+
+3.  **Perform Editing Action:**
+
+- If an edit form appears, make changes to `User B`'s profile.
+
+- Click **Save** or **Submit** to attempt saving the changes.
 
 ---
 
-## Expected Result
-- `User A` is **not** able to access the edit form for `User B`'s profile.
+### Expected Result
+
+-  `User A` is **not** able to access the edit form for `User B`'s profile.
+
 - If `User A` attempts to submit changes directly (e.g., via URL manipulation):
-- `User B`'s profile remains unchanged.
 
-## Actual Result: When signed in as user A, i opened user B's ProfileDetail Page, and an edit form appeared, after editing the content of the profile, i submitted and the change was made.
+-  `User B`'s profile remains unchanged.
 
-## Fix: added permission classes to "profiles/views.py" file, and added logic to validate the object permissions before a get request can be sent.
-
+#### Actual Result: When signed in as user A, i opened user B's ProfileDetail Page, and an edit form appeared, after editing the content of the profile, i submitted and the change was made.
 
 
-### Automated Tests
+#### Fix: added permission classes to "profiles/views.py" file, and added logic to validate the object permissions before a get request can be sent.
+
+## Backend Test Cases for Event Hub
+
+Each test case follows this structure:
+
+
+-  **Test ID:** Unique identifier for the test.
+
+-  **Description:** The purpose of the test.
+
+-  **Steps:** Step-by-step instructions to perform the test.
+
+-  **Expected Result:** What should happen if the feature works correctly.
+
+-  **Actual Result:** The outcome of the test.
+
+-  **Pass/Fail Status:** ✅ ❌
 
 ---
 
-## Deployment
-- Deployed on Heroku at:
+## Authentication & Authorization
 
+### Test Case 1: User Registration
+
+-  **Test ID:** AUTH-001
+
+-  **Description:** Ensure a new user can register with valid credentials.
+
+-  **Steps:**
+
+1. Attempt to create a new account with valid credentials.
+
+2. Verify the user is stored in the database.
+
+-  **Expected Result:** A new user account is created and stored.
+
+-  **Actual Result:** A new user account is created and stored.
+
+-  **Pass/Fail Status:** ✅
+
+---
+
+### Test Case 2: User Login
+
+-  **Test ID:** AUTH-002
+
+-  **Description:** Validate that a registered user can log in with correct credentials.
+
+-  **Steps:**
+
+1. Attempt to log in with correct registered user credentials.
+
+-  **Expected Result:** User is logged in.
+
+-  **Actual Result:** User is logged in.
+
+-  **Pass/Fail Status:** ✅
+
+
+---
+
+
+### Test Case 3: Prevent Unauthorized Profile Editing
+
+-  **Test ID:** PROF-001
+
+-  **Description:** Ensure users cannot update another user’s profile.
+
+-  **Steps:**
+
+1. Log in as `User A`.
+
+2. Attempt to update `User B`'s profile.
+
+-  **Expected Result:**  `User A` is unable to update `User B`'s profile.
+
+-  **Actual Result:**  `User A` is unable to update `User B`'s profile.
+
+-  **Pass/Fail Status:** ✅
+
+---
+
+
+## Event Management
+
+### Test Case 4: Create Event
+
+-  **Test ID:** EVENT-001
+
+-  **Description:** Verify that organisers can create an event.
+
+-  **Steps:**
+
+1. Log in as organiser.
+
+2. Attempt to create an event.
+
+-  **Expected Result:** Event is created successfully and stored in the database.
+
+-  **Actual Result:** Event is created successfully and stored in the database.
+
+-  **Pass/Fail Status:** ✅
+
+---
+
+### Test Case 5: Retrieve Single Event
+
+-  **Test ID:** EVENT-002
+
+-  **Description:** Ensure users can fetch event details by ID.
+
+-  **Steps:**
+
+1. Send a GET request to `/events/{event_id}/`.
+
+-  **Expected Result:** Event details are retrieved correctly.
+
+-  **Actual Result:** Event details are retrieved correctly.
+
+-  **Pass/Fail Status:** ✅
+
+---
+
+## Social Features (Comments, Followers)
+
+### Test Case 6: Add Comment to Event
+
+-  **Test ID:** SOCIAL-001
+
+-  **Description:** Ensure users can add comments to an event.
+
+-  **Steps:**
+
+1. Log in.
+
+2. Send a POST request to `/comments/` with comment text.
+
+-  **Expected Result:** Comment is saved and linked to the event.
+
+-  **Actual Result:** Comment is saved and linked to the event.
+
+-  **Pass/Fail Status:**✅
+---
+ 
+#### Version Control and Hosting
+
+-  **Git**: Used to track code changes, commit, and push code during development.
+
+-  **GitHub**: The source code is hosted on GitHub, allowing for version control and collaborative development.  
+
+# Deployment
+
+### Version Control
+
+
+The **Event Hub Backend** project was developed using **Gitpod** as the IDE, with Git for version control, and the code was stored in a remote GitHub repository.
+
+
+Throughout development, the following Git commands were used to manage and push code updates:
+-  **`git add <file>`**
+
+Adds the specified file(s) to the staging area, preparing them for a commit.
+
+-  **`git commit -m "commit message"`**
+
+Commits the changes in the staging area to the local repository with a descriptive message.
+
+-  **`git push`**
+
+Pushes all committed changes from the local repository to the remote repository on GitHub.
+
+### Heroku Deployment
+
+The **Event Hub Backend** site was deployed to Heroku, a cloud platform that allows easy deployment and scaling of web applications. Follow these steps to deploy the project on Heroku:
+
+1.  **Set Up Heroku**
+
+- Go to [Heroku](https://www.heroku.com/) and create an account (or log in if you already have one).
+
+- In your Heroku dashboard, click the **New** button in the top right corner and select **Create New App**.
+
+- Choose an **App Name** (it must be unique across Heroku) and select the appropriate **Region** based on your location.
+
+- Click **Create App**.
+
+
+2.  **Configure Environment Variables**
+
+- Go to the **Settings** tab and click **Reveal Config Vars** to add necessary environment variables.
+
+- Add the following config vars:
+
+-  `SECRET_KEY`: The Django project's secret key.
+
+-  `DATABASE_URL`: This should already exist.
+
+-  `CLOUDINARY_URL`
+
+-  `ALLOWED_HOST`
+
+-  `CLIENT_ORIGIN:`: Url for the client front end react application that wil be making requests to these APIs
+
+- Save each config var after entering.
+
+3.  **Deploy with GitHub Integration**
+
+- Go to the **Deploy** tab and scroll down to **Deployment method**.
+
+- Under **Connect to GitHub**, click **Connect** and authorize Heroku to access your GitHub account if prompted.
+
+- In the search box, find the repository you want to deploy, then click **Connect** to link it to Heroku.
+
+4.  **Deploy the Application**
+
+- In the **Manual deploy** section, select the **main** branch and click **Deploy Branch**.
+
+- Heroku will begin building and deploying your app. Once completed, a message should confirm that the app was successfully deployed.
+
+- Click **View** to open your live site.
+
+To run the **Event Hub Backend** project on your local machine, follow these steps:
+
+1.  **Clone the Repository**
+
+- Go to the GitHub repository you wish to clone.
+
+- Click on the **Code** dropdown button and select **HTTPS**.
+
+- Copy the repository link provided.
+
+2.  **Clone the Project Locally**
+
+- Open your IDE or terminal of choice (ensure **Git** is installed on your machine).
+
+- In the terminal, type the following command, replacing `copied-git-url` with the URL you copied:
+
+```bash
+git clone copied-git-url
+```
+- Press **Enter** to clone the project. The repository will now be downloaded to your local machine.
+
+3.  **Set Up Environment Variables**
+4. 
+- Within the project directory, create a `.env` file to store your environment variables.
+- Add the necessary keys, such as `SECRET_KEY`, `DATABASE_URL`. `CLOUDINARY_URL`.
+
+
+4.  **Install Dependencies**
+
+- Navigate into the project directory and install the required dependencies by running:
+```bash
+pip install -r requirements.txt
+```
+
+5.  **Apply Migrations**
+- Run the following command to set up the database:
+
+```bash
+python manage.py migrate
+```
+
+6.  **Run the Server**
+
+- Start the Django development server:
+
+```bash
+python manage.py runserver
+```
+
+- Open your browser and go to `http://127.0.0.1:8000` to view the application locally.
+  
+The project is now ready to be used on your local machine for development and testing.
+
+### Fork Project
+ 
+
+Forking a project allows you to create your own copy of someone else’s repository, making it easy to propose changes, experiment, or use it as a foundation for a new project.
+
+
+To fork the **Recipe Blog** repository:
+
+1.  **Navigate to the Repository**
+
+- Go to the GitHub repository page that you want to fork.
+
+2.  **Create the Fork**
+
+- In the top right corner of the page, click the **Fork** button.
+
+- GitHub will create a copy of the full project in your own GitHub account.
+
+
+3.  **Modify and Experiment**
+
+- You now have a duplicate of the original project under your account. You can make changes to your forked copy without affecting the original repository.
+
+- If you wish to propose changes to the original project, you can submit a **pull request** from your forked repository.
+
+This process also allows you to test changes before pushing it to the main/master branch.
+
+## Credits
+
+A list of resources and tools that contributed to the development of this project:
+
+These resources were used in learning and troubleshooting.
