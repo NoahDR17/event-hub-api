@@ -1,5 +1,8 @@
 
 # Event Hub
+<br>
+The live link can be found here: [Live Site - Event Hub](https://event-hub-frontend-30c8bbf9de26.herokuapp.com/)
+<br>
 
 Event Hub API is the backend service used by the [Event Hub Application](https://github.com/NoahDR17/event-hub-frontend).
 
@@ -566,8 +569,6 @@ The **Event Hub Backend** site was deployed to Heroku, a cloud platform that all
 -  `DATABASE_URL`: This should already exist.
 
 -  `CLOUDINARY_URL`
-
--  `ALLOWED_HOST`
 
 -  `CLIENT_ORIGIN:`: Url for the client front end react application that wil be making requests to these APIs
 
