@@ -480,7 +480,7 @@ Each test case follows this structure:
 ---
 
 ##Note: 
-- In addition to above manual test cases, testing was also done incrementally throughout the development process, followed by a more extensive testing in the front-end application via the real API. This approach ensured not only functionality validation but also allowed me to observe live updates of data reflected in the API-driven front-end fields. [Frontend](https://github.com/NoahDR17/event-hub-frontend)
+- In addition to above manual test cases, testing was also done incrementally throughout the development process, followed by a more extensive testing in the front-end application via the real API. This approach ensured not only functionality validation but also allowed me to observe live updates of data reflected in the API-driven front-end fields. Results can be found here [Frontend](https://github.com/NoahDR17/event-hub-frontend)
 
 ---
 ### Validator Results:
@@ -670,6 +670,4 @@ This process also allows you to test changes before pushing it to the main/maste
 
 ## Credits
 
-A list of resources and tools that contributed to the development of this project:
-
-These resources were used in learning and troubleshooting.
+- **Dbeaver**: Referenced [Dbeaver](https://dbeaver.io/) to connect to my database, and create ERD.
