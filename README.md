@@ -417,7 +417,6 @@ Each test case follows this structure:
 
 ---
 
-
 ## Event Management
 
 ### Test Case 4: Create Event
@@ -477,6 +476,12 @@ Each test case follows this structure:
 -  **Actual Result:** Comment is saved and linked to the event.
 
 -  **Pass/Fail Status:**✅
+
+---
+
+##Note: 
+- In addition to above manual test cases, testing was also done incrementally throughout the development process, followed by a more extensive testing in the front-end application via the real API. This approach ensured not only functionality validation but also allowed me to observe live updates of data reflected in the API-driven front-end fields. [Frontend](https://github.com/NoahDR17/event-hub-frontend)
+
 ---
 ### Validator Results:
 - All folders where run through **flake8**, all issues returned where fixed, other than lines too long in migration files, and the Auth Password Validators in settings.py as these are auto generated.
@@ -641,7 +646,6 @@ The project is now ready to be used on your local machine for development and te
  
 
 Forking a project allows you to create your own copy of someone else’s repository, making it easy to propose changes, experiment, or use it as a foundation for a new project.
-
 
 To fork the **Recipe Blog** repository:
 
