@@ -479,7 +479,7 @@ Each test case follows this structure:
 
 ---
 
-##Note: 
+##Note - additional backend testing, performed in front end to ensure it works: 
 - In addition to above manual test cases, testing was also done incrementally throughout the development process, followed by a more extensive testing in the front-end application via the real API. This approach ensured not only functionality validation but also allowed me to observe live updates of data reflected in the API-driven front-end fields. Results can be found here [Frontend](https://github.com/NoahDR17/event-hub-frontend)
 
 ---
